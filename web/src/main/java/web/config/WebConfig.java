@@ -11,16 +11,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
 
 @EnableWebMvc
-@ComponentScan(basePackages = {"web.controller"})
-public class WebConfig implements WebApplicationInitializer{
+@ComponentScan(basePackages = { "web.controller" })
+public class WebConfig implements WebApplicationInitializer {
 
 	public void onStartup(ServletContext sc) throws ServletException {
 		AnnotationConfigWebApplicationContext c = new AnnotationConfigWebApplicationContext();
 		c.setServletContext(sc);
 		c.register(WebConfig.class);
 		c.refresh();
-	    DispatcherServlet dispatcherServlet = new DispatcherServlet(c);
-	    ServletRegistration.Dynamic app = sc.addServlet("dispatcher", dispatcherServlet);
-	    app.addMapping("*.do");
+		DispatcherServlet dispatcherServlet = new DispatcherServlet(c);
+		ServletRegistration.Dynamic app = sc.addServlet("dispatcher", dispatcherServlet);
+		app.addMapping("*.do");
 	}
 }
