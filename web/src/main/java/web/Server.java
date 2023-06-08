@@ -22,8 +22,7 @@ public class Server {
 		tomcat.setConnector(conn);
 		StandardContext ctx = (StandardContext) tomcat.addWebapp("", new File("src/main/webapp/").getAbsolutePath());
 		WebResourceRoot resources = new StandardRoot(ctx);
-		resources.addPreResources(
-				new DirResourceSet(resources, "/WEB-INF/classes", new File("target/classes").getAbsolutePath(), "/"));
+		resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes", new File("target/classes").getAbsolutePath(), "/"));
 		ctx.setResources(resources);
 		tomcat.start();
 		tomcat.getServer().await();
