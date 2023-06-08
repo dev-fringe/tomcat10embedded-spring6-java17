@@ -15,16 +15,24 @@ public class Server {
 
 	@SneakyThrows
 	public static void main(String[] args) {
-		Tomcat tomcat = new Tomcat();
-		tomcat.setBaseDir("temp");
-		Connector conn = new Connector();
-		conn.setPort(8080);
-		tomcat.setConnector(conn);
-		StandardContext ctx = (StandardContext) tomcat.addWebapp("", new File("src/main/webapp/").getAbsolutePath());
-		WebResourceRoot resources = new StandardRoot(ctx);
-		resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes", new File("target/classes").getAbsolutePath(), "/"));
-		ctx.setResources(resources);
-		tomcat.start();
-		tomcat.getServer().await();
+		Tomcat t = new Tomcat();
+		t.setBaseDir("/temp"); //c:\temp
+		Connector c = new Connector();
+		c.setPort(8080);
+		t.setConnector(c);// tomcat 10은 이렇게 써야 된다. 바뀜. 9는 틀림.
+		setContext(t);
+		t.start();
+		t.getServer().await();
+	}
+
+	/**
+	 * maven achetype
+	 * @param t
+	 */
+	private static void setContext(Tomcat t) {
+		StandardContext c = (StandardContext) t.addWebapp("", new File("src/main/webapp/").getAbsolutePath());// ${project home}/src/main/webapp
+		WebResourceRoot r = new StandardRoot(c);
+		r.addPreResources(new DirResourceSet(r, "/WEB-INF/classes", new File("target/classes").getAbsolutePath(), "/"));
+		c.setResources(r);
 	}
 }
