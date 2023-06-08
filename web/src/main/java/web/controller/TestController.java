@@ -9,6 +9,11 @@ public class TestController {
 
 	@RequestMapping("/index.do")
 	public @ResponseBody String hello() {
-		return "hello";
+		return "2323"; 
+	}
+	
+	@RequestMapping("/index1.do")
+	public @ResponseBody String hello1() {
+		return "132312332"; 
 	}
 }
