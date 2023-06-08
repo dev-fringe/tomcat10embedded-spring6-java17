@@ -1,5 +1,6 @@
 - hotswap-agent 17 는 무조건 debug로 실행
 - typescript, webpack, jquery (npm & node)
 - webpack --watch -> ant? 
-- going native
+- boot repackage 
+- going native - aot, hint
 - https
