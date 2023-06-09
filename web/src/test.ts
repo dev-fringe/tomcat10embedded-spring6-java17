@@ -1,4 +1,6 @@
+
 import $ from 'jquery';
+
 
 export function change() {
     let request = $.ajax({

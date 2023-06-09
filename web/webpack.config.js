@@ -1,18 +1,26 @@
 const path = require('path');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src'),
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: ["style-loader", "css-loader", "sass-loader"]
+            }
+        ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'src/main/webapp'),
         library: 'app'
-    },
-
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json']
-    },
-
-    module: {
-        rules: [{test: /\.(ts|js)x?$/, loader: 'babel-loader', exclude: /node_modules/}],
+        
     }
 };

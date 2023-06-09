@@ -6,6 +6,7 @@
     "noImplicitReturns": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
     "declarationDir": "dist/types",
     "declaration": true,
