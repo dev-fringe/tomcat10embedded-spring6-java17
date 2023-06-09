@@ -4,3 +4,4 @@
 - boot repackage 
 - going native - aot, hint
 - https
+- jgit - https://github.com/smartrics/jgit-ant
