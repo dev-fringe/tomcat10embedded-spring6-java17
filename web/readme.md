@@ -1,4 +1,4 @@
-- hotswap-agent 17 는 무조건 debug로 실행
+- mybatis 에러난다. 아놔. hotswap-agent 17 는 무조건 debug로 실행 -XX:+AllowEnhancedClassRedefinition -XX:HotswapAgent=fatjar 
 - typescript, webpack, jquery (npm & node)
 - webpack --watch -> ant? 
 - boot repackage 

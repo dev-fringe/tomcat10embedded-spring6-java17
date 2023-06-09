@@ -1,6 +1,7 @@
 package web.config;
 
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -11,7 +12,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
 
 @EnableWebMvc
-@ComponentScan(basePackages = { "web.controller" })
+@ComponentScan(basePackages = { "web.controller","web.service"})
+@Import(MybatisConfig.class)
 public class WebConfig implements WebApplicationInitializer {
 
 	public void onStartup(ServletContext sc) throws ServletException {
@@ -23,4 +25,5 @@ public class WebConfig implements WebApplicationInitializer {
 		ServletRegistration.Dynamic app = sc.addServlet("dispatcher", dispatcherServlet);
 		app.addMapping("*.do");
 	}
+
 }
