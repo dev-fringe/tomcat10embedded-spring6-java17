@@ -1,0 +1,28 @@
+<project xmlns:sf="antlib:com.salesforce" basedir="." xmlns:git="antlib:com.rimerosolutions.ant.git" default="deploy">
+	
+	<path id="git.classpath">
+		<pathelement location="custom/jgit-ant.jar" />
+		<pathelement location="lib/jsch-0.1.44.jar" />
+		<pathelement location="lib/org.eclipse.jgit-0.12.1.jar" />
+	</path>
+	<taskdef resource="jgit-ant.properties" classpathref="git.classpath" />
+	<target name="deploy" >
+		<delete dir="build/restfixture-git-ro" />
+		<mkdir dir="build/restfixture-git-ro" />
+		<git localDirectory="build/restfixture-git-ro" verbose="true">
+			<!-- clones the repository specified in uri attribute to local directory specified in the git parent task -->
+			<clone uri="https://github.com/dev-fringe/tomcat10embedded-spring6-java17" />
+		</git>
+	</target>
+	
+
+	<target name="update-remote">
+		<git localDirectory="build/restfixture-git-ro" verbose="true">
+			<pull modificationExistProperty="is.not.uptodate" pullFailedProperty="pull.failed" />
+		</git>
+        <echo message="Repository is not uptodate: ${is.not.uptodate}" />
+        <echo message="Pull failed: ${pull.failed}" />
+		<fail if="pull.failed"
+		      message="Pull failed: ${pull.failed}. Details:\n  merge result: ${merge.failed}\n  rebase result: ${rebase.failed}" />
+	</target>
+</project>
