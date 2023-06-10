@@ -12,7 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
 
 @EnableWebMvc
-@ComponentScan(basePackages = { "web.controller","web.service"})
+@ComponentScan(basePackages = { "web.controller"})
 @Import(MybatisConfig.class)
 public class WebConfig implements WebApplicationInitializer {
 

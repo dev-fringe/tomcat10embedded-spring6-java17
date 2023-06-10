@@ -3,9 +3,7 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="web.mapper.DummyMapper">
-
     <select id="select" resultType="Map">
 		SELECT * FROM aa 
     </select>
- 
 </mapper>
